@@ -1,0 +1,10 @@
+const STARTER_WORDS=[
+{id:'w001',category:'基本',en:{word:'water',example:'I drink water.'},idn:{word:'air',example:'Saya minum air.'},eo:{word:'akvo',example:'Mi trinkas akvon.'},tr:{word:'su',example:'Su içerim.'},ja:{word:'水',example:'私は水を飲みます。'}},
+{id:'w002',category:'基本',en:{word:'book',example:'I read a book.'},idn:{word:'buku',example:'Saya membaca buku.'},eo:{word:'libro',example:'Mi legas libron.'},tr:{word:'kitap',example:'Kitap okuyorum.'},ja:{word:'本',example:'私は本を読みます。'}},
+{id:'w003',category:'動詞',en:{word:'eat',example:'I eat breakfast.'},idn:{word:'makan',example:'Saya makan sarapan.'},eo:{word:'manĝi',example:'Mi manĝas matenmanĝon.'},tr:{word:'yemek',example:'Kahvaltı yaparım.'},ja:{word:'食べる',example:'私は朝食を食べます。'}},
+{id:'w004',category:'動詞',en:{word:'go',example:'I go to Tokyo.'},idn:{word:'pergi',example:'Saya pergi ke Tokyo.'},eo:{word:'iri',example:'Mi iras al Tokio.'},tr:{word:'gitmek',example:"Tokyo'ya gidiyorum."},ja:{word:'行く',example:'東京へ行きます。'}},
+{id:'w005',category:'機能語',en:{word:'to / toward',example:'I go to the station.'},idn:{word:'ke',example:'Saya pergi ke stasiun.'},eo:{word:'al',example:'Mi iras al la stacidomo.'},tr:{word:'-e / -a (yönelme hâli)',example:'İstasyona gidiyorum.'},ja:{word:'～へ／～に',example:'駅へ行きます。'}},
+{id:'w006',category:'機能語',en:{word:'at / by / with',example:'I am at the station.'},idn:{word:'di / pada',example:'Saya berada di stasiun.'},eo:{word:'ĉe',example:'Mi estas ĉe la stacidomo.'},tr:{word:'-de / -da (bulunma hâli)',example:'İstasyondayım.'},ja:{word:'～で／～の所で',example:'私は駅にいます。'}},
+{id:'w007',category:'機能語',en:{word:'from / of',example:'I come from Japan.'},idn:{word:'dari',example:'Saya datang dari Jepang.'},eo:{word:'de',example:'Mi venas de Japanio.'},tr:{word:'-den / -dan',example:"Japonya'dan geliyorum."},ja:{word:'～から／～の',example:'私は日本から来ました。'}},
+{id:'w008',category:'機能語',en:{word:'with',example:'I go with a friend.'},idn:{word:'dengan',example:'Saya pergi dengan teman.'},eo:{word:'kun',example:'Mi iras kun amiko.'},tr:{word:'ile',example:'Arkadaşımla gidiyorum.'},ja:{word:'～と／～と一緒に',example:'友人と行きます。'}}
+];
