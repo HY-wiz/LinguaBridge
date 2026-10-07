@@ -14,51 +14,20 @@ function form(){ $('#addForm').innerHTML=`<div class="field">カテゴリー<inp
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active');if(b.dataset.view==='list')renderList();if(b.dataset.view==='quiz')quiz()});
 $('#prev').onclick=()=>{let a=filtered();idx=(idx-1+a.length)%a.length;showEx=false;render()};$('#next').onclick=()=>{let a=filtered();idx=(idx+1)%a.length;showEx=false;render()};$('#examples').onclick=()=>{showEx=!showEx;render()};$('#shuffle').onclick=()=>{let a=filtered();idx=Math.floor(Math.random()*a.length);showEx=false;render()};$('#category').onchange=()=>{idx=0;render()};$('#search').oninput=renderList;$('#quizAnswer').onclick=quizAns;$('#quizNext').onclick=quiz;
 $('#addWord').onclick=()=>{let f=new FormData($('#addForm'));let w={id:'u'+Date.now(),category:f.get('category')||'追加'};KEYS.forEach(k=>w[k]={word:f.get(k)||'',example:f.get(k+'Ex')||''});if(!w.en.word&&!w.ja.word)return alert('少なくとも英語または日本語を入力してください。');words.push(w);save();cats();render();$('#addForm').reset();alert('追加しました。')};
-$('#export').onclick=async()=>{
+$('#export').onclick=()=>{
   const now=new Date();
   const pad=n=>String(n).padStart(2,'0');
   const date=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
-
-  const backup={
-    app:'LinguaBridge',
-    version:3,
-    exportedAt:now.toISOString(),
-    words
-  };
-
-  const blob=new Blob(
-    [JSON.stringify(backup,null,2)],
-    {type:'application/json'}
-  );
-
-  const file=new File(
-    [blob],
-    `LinguaBridge_backup_${date}.json`,
-    {type:'application/json'}
-  );
-
-  try{
-    if(navigator.share && navigator.canShare &&
-       navigator.canShare({files:[file]})){
-      await navigator.share({
-        files:[file],
-        title:'LinguaBridge バックアップ'
-      });
-    }else{
-      const a=document.createElement('a');
-      const url=URL.createObjectURL(blob);
-      a.href=url;
-      a.download=file.name;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(()=>URL.revokeObjectURL(url),1000);
-    }
-  }catch(e){
-    if(e.name!=='AbortError'){
-      alert('バックアップを共有できませんでした。');
-    }
-  }
+  const backup={app:'LinguaBridge',version:2,exportedAt:now.toISOString(),words};
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`LinguaBridge_backup_${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
 $('#import').onchange=async e=>{try{let j=JSON.parse(await e.target.files[0].text());let x=Array.isArray(j)?j:j.words;if(!Array.isArray(x))throw 0;words=x;save();cats();render();alert('読み込みました。')}catch{alert('JSONを読み込めませんでした。')}};
 $('#reset').onclick=()=>{if(confirm('追加データを消して初期状態に戻しますか？')){words=structuredClone(STARTER_WORDS);save();cats();render()}};$('#theme').onclick=()=>document.body.classList.toggle('dark');
